@@ -15,6 +15,19 @@ Contained files:
 	 ht802prog.bin 	version: 1.0.9.3 	size: 3223552 bytes
 ```  
 
+```bash
+$ ./GSFW.py info -i ht801fw.bin
+** Firmware Info **
+Contained files:
+         ht801boot.bin  version: 1.0.51.1       size: 245760 bytes
+         ht801core.bin  version: 1.0.51.1       size: 1269760 bytes
+         ht801prog.bin  version: 1.0.51.1       size: 3371008 bytes
+         ht801base.bin  version: 1.0.51.1       size: 2994176 bytes
+         ht801boot.dvf9919.bin  version: 1.0.51.1       size: 249856 bytes
+         ht801core.dvf9919.bin  version: 1.0.51.1       size: 1273856 bytes
+
+``` 
+
 ### Extract 
 Decrypt and extract all contained files
 ```bash
@@ -38,7 +51,44 @@ Extracting files:
 		Head key: 738d0cb8bc02736494244683fb5e4539
 		Body key: 000ee4a507e2041a0a0bfd2100010000
 		Decrypting...
+```
+
+```bash
+$ ./GSFW.py extract -i ../../ht801fw.bin -d /tmp/test
+** Firmware Extract **
+Used key: 37d6ae8bc920374649426438bde35493
+Extracting files:
+         /tmp/test/ht801boot.bin        version: 1.0.51.1       size: 245760 bytes
+                Head key: 738d0cb8bc02736494244683fb5e4539
+                Body key: 000b31d607e709160d1dfd2000010000
+                Decrypting...
+
+         /tmp/test/ht801core.bin        version: 1.0.51.1       size: 1269760 bytes
+                Head key: 738d0cb8bc02736494244683fb5e4539
+                Body key: 000ca1d507e709160d1dfd2000010000
+                Decrypting...
+
+         /tmp/test/ht801prog.bin        version: 1.0.51.1       size: 3371008 bytes
+                Head key: 738d0cb8bc02736494244683fb5e4539
+                Body key: 000e60c907e709160d1dfd2000010000
+                Decrypting...
+
+         /tmp/test/ht801base.bin        version: 1.0.51.1       size: 2994176 bytes
+                Head key: 738d0cb8bc02736494244683fb5e4539
+                Body key: 000d138507e709160d1dfd2000010000
+                Decrypting...
+
+         /tmp/test/ht801boot.dvf9919.bin        version: 1.0.51.1       size: 249856 bytes
+                Head key: 738d0cb8bc02736494244683fb5e4539
+                Body key: 000bdf5107e709160d1dfd2000010000
+                Decrypting...
+
+         /tmp/test/ht801core.dvf9919.bin        version: 1.0.51.1       size: 1273856 bytes
+                Head key: 738d0cb8bc02736494244683fb5e4539
+                Body key: 000c4b5907e709160d1dfd2000010000
+                Decrypting...
 ```  
+
 You can now extract filesystem from sqfs:  
 `$ sudo binwalk -e /tmp/test/ht802prog.bin`  
 Make you mods...  
@@ -146,6 +196,7 @@ If in both places there is no key, the binary falls back on two standard keys:
 
 # Supported devices
 This tool was tested with the following devices, other devices may also be supported.  
+- HT801
 - HT802
 - HT814
 - GXP16XX (using [GS_NUM_FILES](https://github.com/BigNerd95/Grandstream-Firmware-HT802/blob/master/FirmwarePatcher/GSFW.py#L11) = 8)
